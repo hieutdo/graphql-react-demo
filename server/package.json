@@ -6,14 +6,18 @@
   "license": "MIT",
   "scripts": {
     "json:server": "json-server --watch db.json",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "debug": "nodemon --inspect-brk server.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-graphql": "^0.6.7",
     "graphql": "^0.10.5",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.7"
   },
   "devDependencies": {
     "json-server": "^0.12.0",
