@@ -15,7 +15,7 @@ const LyricSchema = new Schema({
   },
 });
 
-LyricSchema.statics.like = async (id) => {
+LyricSchema.statics.like = async function (id) {
   const lyric = await this.findById(id);
   lyric.likes++;
   return await lyric.save();
