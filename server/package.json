@@ -5,9 +5,9 @@
   "author": "Hieu Do",
   "license": "MIT",
   "scripts": {
-    "json:server": "json-server --watch db.json",
-    "dev": "nodemon server.js",
-    "debug": "nodemon --inspect-brk server.js"
+    "start": "node index.js",
+    "debug": "nodemon --inspect-brk index.js",
+    "json:server": "json-server --watch db.json"
   },
   "dependencies": {
     "axios": "^0.16.2",
