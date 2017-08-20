@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import SongList from './components/SongList';
 
 class App extends Component {
   render() {
     return (
-      <SongList />
+      <div className="container">
+        {this.props.children}
+      </div>
     );
   }
 }
