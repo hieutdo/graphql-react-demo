@@ -1,3 +1,6 @@
+import 'materialize-css/dist/css/materialize.css';
+import './index.css';
+
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import React from 'react';
@@ -7,7 +10,6 @@ import App from './App';
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import registerServiceWorker from './registerServiceWorker';
-import 'materialize-css/dist/css/materialize.css';
 
 const client = new ApolloClient({});
 
