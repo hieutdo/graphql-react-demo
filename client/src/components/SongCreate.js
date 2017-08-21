@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, gql } from 'react-apollo';
 import { Link, hashHistory } from 'react-router';
-import gql from 'graphql-tag';
 import query from '../queries/fetchSongs';
 
 class SongCreate extends Component {
