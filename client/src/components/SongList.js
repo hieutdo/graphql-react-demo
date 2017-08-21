@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router';
 import gql from 'graphql-tag';
-
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
 
 class SongList extends Component {
   renderSongs(songs) {
     return songs.map((song) => (
-      <li key={song.id}>{song.title}</li>
+      <li key={song.id} className="collection-item">
+        {song.title}
+      </li>
     ));
   }
 
@@ -24,11 +18,27 @@ class SongList extends Component {
       return <div>loading...</div>;
     }
     return (
-      <ul>
-        {this.renderSongs(songs)}
-      </ul>
+      <div>
+        <ul className="collection">
+          {this.renderSongs(songs)}
+        </ul>
+        <Link
+          className="btn-floating btn-large red right"
+          to="/songs/new">
+          <i className="large material-icons">add</i>
+        </Link>
+      </div>
     );
   }
 }
+
+const query = gql`
+  query {
+    songs {
+      id
+      title
+    }
+  }
+`;
 
 export default graphql(query)(SongList);
