@@ -1,10 +1,13 @@
 const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
 const bodyParser = require('body-parser');
+const MongoStore = require('connect-mongo')(session);
 const expressGraphQL = require('express-graphql');
 const models = require('./models');
 const schema = require('./schema');
 
-function startServer(port) {
+function startServer(port, mongoUri) {
   if (!port) {
     throw new TypeError('port cannot be empty');
   }
@@ -12,6 +15,19 @@ function startServer(port) {
   console.info('Starting Express server...');
 
   const app = express();
+
+  app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'aaaabbbbcccc',
+    store: new MongoStore({
+      url: mongoUri,
+      autoReconnect: true,
+    }),
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   app.use(bodyParser.json());
   app.use('/graphql', expressGraphQL({

@@ -30,7 +30,7 @@ async function gracefulShutdown(expressApp, mongoConnection, exitCode = 0) {
 
   try {
     mongoConnection = await connectToDb(MONGODB_URI);
-    expressApp = await startServer(PORT);
+    expressApp = await startServer(PORT, MONGODB_URI);
     process
       .on('SIGINT', gracefulShutdown.bind(null, expressApp, mongoConnection))
       .on('SIGTERM', gracefulShutdown.bind(null, expressApp, mongoConnection));
