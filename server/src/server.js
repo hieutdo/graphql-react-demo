@@ -1,10 +1,11 @@
+const models = require('./models');
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
+const passportConfig = require('./services/auth');
 const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo')(session);
 const expressGraphQL = require('express-graphql');
-const models = require('./models');
 const schema = require('./schema');
 
 function startServer(port, mongoUri) {
