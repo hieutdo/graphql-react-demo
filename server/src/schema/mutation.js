@@ -67,6 +67,14 @@ const mutation = new GraphQLObjectType({
         return AuthService.signup({ email, password, req });
       },
     },
+    logout: {
+      type: UserType,
+      resolve: (_, args, req) => {
+        const { user } = req;
+        req.logout();
+        return user;
+      },
+    },
   }),
 });
 
