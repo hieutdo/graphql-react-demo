@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
   GraphQLList,
 } = require('graphql');
-const LyricType = require('./lyric.type');
+const mongoose = require('mongoose');
+const LyricType = require('./lyric');
 const Song = mongoose.model('song');
 
 const SongType = new GraphQLObjectType({

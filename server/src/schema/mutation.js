@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
-const SongType = require('./song.type');
-const LyricType = require('./lyric.type');
-const Song = mongoose.model('song');
-const Lyric = mongoose.model('lyric');
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
 } = require('graphql');
+const mongoose = require('mongoose');
+const SongType = require('./types/song');
+const LyricType = require('./types/lyric');
+const Song = mongoose.model('song');
+const Lyric = mongoose.model('lyric');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
