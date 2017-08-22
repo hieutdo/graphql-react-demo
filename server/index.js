@@ -1,7 +1,7 @@
 require('dotenv').load();
 
-const connectToDb = require('./db');
-const startServer = require('./server');
+const connectToDb = require('./src/db');
+const startServer = require('./src/server');
 const { MONGODB_URI, PORT } = process.env;
 
 async function gracefulShutdown(expressApp, mongoConnection, exitCode = 0) {
@@ -24,7 +24,7 @@ async function gracefulShutdown(expressApp, mongoConnection, exitCode = 0) {
   }
 }
 
-async function bootstrap() {
+(async function () {
   let mongoConnection;
   let expressApp;
 
@@ -38,6 +38,4 @@ async function bootstrap() {
     console.error(e);
     gracefulShutdown(expressApp, mongoConnection, 1);
   }
-}
-
-bootstrap();
+})();
