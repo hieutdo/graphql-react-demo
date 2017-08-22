@@ -21,19 +21,15 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, passwor
   try {
     const user = await User.findOne({ email: email.toLowerCase() });
     if (!user) {
-      return done(null, false, 'Invalid Credentials');
+      throw new Error('User does not exist');
     }
-    user.comparePassword(passport, (err, isMatch) => {
-      if (err) {
-        return done(err);
-      }
-      if (isMatch) {
-        return done(null, user);
-      }
-      return done(null, false, 'Invalid Credentials');
-    });
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      throw new Error('Invalid Credentials');
+    }
+    return done(null, user);
   } catch (e) {
-    done(e);
+    done(e, false);
   }
 }));
 
@@ -61,15 +57,15 @@ async function signup({ email, password, req }) {
   });
 }
 
-async function login({ email, password, req }) {
+function login({ email, password, req }) {
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
       if (!user) {
-        reject('Invalid Credentials');
+        reject(err.message);
       } else {
         req.logIn(user, () => resolve(user));
       }
-    })({ body: { email, passport } });
+    })({ body: { email, password } });
   });
 }
 

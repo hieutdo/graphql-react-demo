@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "debug": "nodemon --inspect-brk index.js",
+    "debug": "nodemon --inspect index.js",
     "json:server": "json-server --watch db.json"
   },
   "dependencies": {
