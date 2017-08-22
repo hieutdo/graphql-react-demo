@@ -6,9 +6,9 @@ class LyricList extends Component {
     await this.props.mutate({
       variables: { id },
       optimisticResponse: {
-        __typeName: 'Mutation',
+        __typename: 'Mutation',
         likeLyric: {
-          __typeName: 'LyricType',
+          __typename: 'LyricType',
           id,
           likes: likes + 1,
         }
