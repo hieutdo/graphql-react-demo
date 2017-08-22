@@ -7,6 +7,7 @@ const {
 const mongoose = require('mongoose');
 const SongType = require('./song');
 const LyricType = require('./lyric');
+const UserType = require('./user');
 const Lyric = mongoose.model('lyric');
 const Song = mongoose.model('song');
 
@@ -34,6 +35,10 @@ const RootQueryType = new GraphQLObjectType({
         },
       },
       resolve: (_, { id }) => Lyric.findById(id),
+    },
+    user: {
+      type: UserType,
+      resolve: (_, __, { user }) => user,
     },
   }),
 });
