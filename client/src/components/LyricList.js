@@ -4,20 +4,23 @@ import { gql, graphql } from 'react-apollo';
 class LyricList extends Component {
   async onLike(id) {
     await this.props.mutate({
-      variables: { id }
+      variables: { id },
     });
   }
 
   renderLyrics() {
-    return this.props.lyrics.map(({ id, content }) => (
+    return this.props.lyrics.map(({ id, content, likes }) => (
       <li key={id} className="collection-item">
         {content}
-        <i
-          className="material-icons"
-          onClick={() => this.onLike(id)}
-        >
-          thumb_up
-        </i>
+        <div className="vote-box">
+          {likes}
+          <i
+            className="material-icons"
+            onClick={() => this.onLike(id)}
+          >
+            thumb_up
+          </i>
+        </div>
       </li>
     ));
   }
