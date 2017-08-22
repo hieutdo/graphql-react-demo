@@ -33,3 +33,4 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
   });
 };
 
+mongoose.model('user', UserSchema);

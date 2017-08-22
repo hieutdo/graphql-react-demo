@@ -6,8 +6,10 @@ const {
 const mongoose = require('mongoose');
 const SongType = require('./types/song');
 const LyricType = require('./types/lyric');
+const UserType = require('./types/user');
 const Song = mongoose.model('song');
 const Lyric = mongoose.model('lyric');
+const AuthService = require('../services/auth');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -50,6 +52,20 @@ const mutation = new GraphQLObjectType({
         },
       },
       resolve: (_, { id }) => Song.remove({ _id: id }),
+    },
+    signup: {
+      type: UserType,
+      args: {
+        email: {
+          type: GraphQLString,
+        },
+        password: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_, { email, password }, req) => {
+        return AuthService.signup({ email, password, req });
+      },
     },
   }),
 });
