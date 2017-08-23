@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
 import { Link } from 'react-router';
-import query from '../queries/fetchSongs';
+import query from '../queries/fetch-songs';
 
 class SongList extends Component {
   async onSongDelete(id) {
