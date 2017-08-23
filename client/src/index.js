@@ -10,6 +10,7 @@ import App from './App';
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetail';
+import LoginForm from './components/LoginForm';
 import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
@@ -29,6 +30,7 @@ ReactDOM.render(
         <IndexRoute component={SongList} />
         <Route path="songs/new" component={SongCreate} />
         <Route path="songs/:id" component={SongDetail} />
+        <Route path="login" component={LoginForm} />
       </Route>
     </Router>
   </ApolloProvider>,
