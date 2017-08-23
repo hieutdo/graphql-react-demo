@@ -1,8 +1,8 @@
 import 'materialize-css/dist/css/materialize.css';
 import './index.css';
 
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
-import { ApolloProvider } from 'react-apollo';
+import { hashHistory, IndexRoute, Route, Router } from 'react-router';
+import { ApolloProvider, createNetworkInterface } from 'react-apollo';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-client';
@@ -14,6 +14,12 @@ import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
   dataIdFromObject: o => o.id,
+  networkInterface: createNetworkInterface({
+    uri: '/graphql',
+    opts: {
+      credentials: 'same-origin',
+    },
+  }),
 });
 
 ReactDOM.render(
